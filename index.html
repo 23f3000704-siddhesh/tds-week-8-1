@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Q3 Quarterly Earnings – Interactive Report</title>
+
+    <!-- RevealJS core + theme (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css"
+      id="theme"
+    />
+
+    <!-- Code highlighting theme -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css"
+    />
+
+    <style>
+      /* Simple custom styling */
+      .brand {
+        font-size: 0.7em;
+        color: #666;
+      }
+
+      .kpi {
+        font-size: 1.4em;
+        font-weight: bold;
+      }
+
+      .email {
+        margin-top: 20px;
+        font-size: 0.8em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- =========================
+             SLIDE 1: TITLE
+        ========================== -->
+        <section>
+          <h2>Q3 2025 Quarterly Earnings</h2>
+          <h4>Interactive Financial Overview</h4>
+          <p class="brand">Global Banking & Markets Division</p>
+          <p class="email">
+            Prepared by: <strong>Technical Consultant</strong><br />
+            <span>23f3000704@ds.study.iitm.ac.in</span>
+          </p>
+
+          <aside class="notes">
+            Welcome everyone. This deck is built with RevealJS to demonstrate
+            interactive presentation capabilities for our quarterly earnings
+            review. I’ll show live-style charts, code, and formulas—things you
+            can’t do in a static PDF.
+          </aside>
+        </section>
+
+        <!-- =========================
+             SLIDE 2: AGENDA (FRAGMENTS)
+        ========================== -->
+        <section>
+          <h2>Agenda</h2>
+          <ul>
+            <li class="fragment">Headline financial performance</li>
+            <li class="fragment">Revenue & margin breakdown</li>
+            <li class="fragment">Risk & capital ratios</li>
+            <li class="fragment">Data-driven insights (code & models)</li>
+            <li class="fragment">Next steps for automation</li>
+          </ul>
+
+          <aside class="notes">
+            Use this slide to set expectations. Pause briefly on each bullet as
+            it appears. Emphasize that everything is driven by the same data
+            pipelines used in production reporting.
+          </aside>
+        </section>
+
+        <!-- =========================
+             SLIDE 3: MARKDOWN SLIDE
+             (REQUIRED: At least one markdown slide)
+        ========================== -->
+        <section data-markdown>
+          <textarea data-template>
+## Q3 Highlights (Markdown Slide)
+
+- **Net Revenue:** \$3.2B  
+- **Net Income:** \$720M  
+- **Cost-to-Income Ratio:** 52%  
+- **ROE:** 14.3%
+
+---
+
+### Commentary
+
+- Strong fee-based income from **Wealth Management**
+- **Trading revenue** normalized vs last quarter
+- Expenses stable despite **technology investments**
+          </textarea>
+
+          <aside class="notes">
+            This slide proves we can feed content from Markdown. Mention that
+            this enables programmatic generation of slides from reporting
+            pipelines or notebooks.
+          </aside>
+        </section>
+
+        <!-- =========================
+             SLIDE 4: MATH (FINANCIAL FORMULA)
+        ========================== -->
+        <section>
+          <h2>Financial Formula – Net Present Value (NPV)</h2>
+          <p>We evaluate long-term projects using discounted cash flows:</p>
+
+          <p>
+            \[
+              \text{NPV} = \sum_{t=1}^{T} \frac{CF_t}{(1 + r)^t} - C_0
+            \]
+          </p>
+
+          <ul>
+            <li class="fragment"><strong>\(CF_t\)</strong>: Cash flow at time \(t\)</li>
+            <li class="fragment"><strong>\(r\)</strong>: Discount rate (cost of capital)</li>
+            <li class="fragment"><strong>\(C_0\)</strong>: Initial investment</li>
+          </ul>
+
+          <aside class="notes">
+            Tie this formula directly to a real project decision the bank might
+            make, e.g., rolling out a new digital lending platform. Highlight
+            that these calculations can be automated and surfaced directly in
+            interactive dashboards.
+          </aside>
+        </section>
+
+        <!-- =========================
+             SLIDE 5: CODE + SYNTAX HIGHLIGHTING
+        ========================== -->
+        <section>
+          <h2>Data Pipeline – Earnings Summary (Python)</h2>
+          <pre>
+<code class="language-python" data-line-numbers="1-4|6-11|13-18">
+import pandas as pd
+
+# Load quarterly P&amp;L data
+df = pd.read_csv("q3_earnings.csv")
+
+# Aggregate key metrics
+summary = (
+    df.groupby("segment")
+      .agg(
+          revenue=("revenue", "sum"),
+          net_income=("net_income", "sum"),
+          roe=("roe", "mean"),
+      )
+      .reset_index()
+)
+
+# Flag segments below ROE threshold
+THRESHOLD_ROE = 0.12
+summary["underperforming"] = summary["roe"] &lt; THRESHOLD_ROE
+
+print(summary)
+</code>
+          </pre>
+
+          <aside class="notes">
+            Explain that this is a simplified view of the data pipeline that
+            feeds the slides. You can mention that in reality, this would be
+            wired into a scheduled ETL + quality checks, then exposed through an
+            API or notebook.
+          </aside>
+        </section>
+
+        <!-- =========================
+             SLIDE 6: FRAGMENTS + STACKED VISUAL
+        ========================== -->
+        <section>
+          <h2>Revenue Mix – Year over Year</h2>
+          <p class="kpi">Total Net Revenue: +9.4% YoY</p>
+
+          <div class="r-stack">
+            <div class="fragment">
+              <p><strong>Step 1:</strong> Baseline revenue</p>
+              <img src="images/revenue_step1.png" alt="Baseline revenue" />
+            </div>
+            <div class="fragment">
+              <p><strong>Step 2:</strong> Add Trading &amp; Markets</p>
+              <img src="images/revenue_step2.png" alt="Trading contribution" />
+            </div>
+            <div class="fragment">
+              <p><strong>Step 3:</strong> Add Wealth &amp; Retail</p>
+              <img src="images/revenue_step3.png" alt="Wealth contribution" />
+            </div>
+          </div>
+
+          <aside class="notes">
+            Even if the images are static, the progressive reveal mimics an
+            animated build-up of the chart. This is ideal for guiding attention
+            rather than dumping a busy chart all at once.
+          </aside>
+        </section>
+
+        <!-- =========================
+             SLIDE 7: CLOSING / CONTACT
+        ========================== -->
+        <section>
+          <h2>Next Steps</h2>
+          <ul>
+            <li class="fragment">Automate data refresh from production systems</li>
+            <li class="fragment">Embed predictive risk models in future decks</li>
+            <li class="fragment">Standardize RevealJS templates for all reports</li>
+          </ul>
+
+          <p class="email fragment">
+            Contact: <strong>23f3000704@ds.study.iitm.ac.in</strong>
+          </p>
+
+          <aside class="notes">
+            Close by positioning this approach as a standard for future executive
+            reporting: interactive, data-driven, and reproducible from code.
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <!-- Scripts: Reveal core -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+
+    <!-- Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
+
+    <script>
+      Reveal.initialize({
+        width: 1280,
+        height: 720,
+        margin: 0.04,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: "slide",
+        plugins: [RevealMarkdown, RevealHighlight, RevealMath, RevealNotes],
+        math: {
+          // MathJax 3 default config
+          mathjax:
+            "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
+          tex: {
+            inlineMath: [["\\(", "\\)"]],
+            displayMath: [["\\[", "\\]"]],
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
